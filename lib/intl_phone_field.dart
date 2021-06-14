@@ -146,36 +146,36 @@ class IntlPhoneField extends StatefulWidget {
 
   TextInputAction? textInputAction;
 
-  IntlPhoneField(
-      {this.initialCountryCode,
-      this.obscureText = false,
-      this.textAlign = TextAlign.left,
-      this.onTap,
-      this.readOnly = false,
-      this.initialValue,
-      this.keyboardType = TextInputType.number,
-      this.autoValidate = true,
-      this.controller,
-      this.focusNode,
-      this.decoration,
-      this.style,
-      this.onSubmitted,
-      this.validator,
-      this.onChanged,
-      this.countries,
-      this.onCountryChanged,
-      this.onSaved,
-      this.showDropdownIcon = true,
-      this.dropdownDecoration = const BoxDecoration(),
-      this.inputFormatters,
-      this.enabled = true,
-      this.keyboardAppearance = Brightness.light,
-      this.searchText = 'Search by Country Name',
-      this.countryCodeTextColor,
-      this.dropDownArrowColor,
-      this.autofocus = false,
-      this.textInputAction,
-      });
+  IntlPhoneField({
+    this.initialCountryCode,
+    this.obscureText = false,
+    this.textAlign = TextAlign.left,
+    this.onTap,
+    this.readOnly = false,
+    this.initialValue,
+    this.keyboardType = TextInputType.number,
+    this.autoValidate = true,
+    this.controller,
+    this.focusNode,
+    this.decoration,
+    this.style,
+    this.onSubmitted,
+    this.validator,
+    this.onChanged,
+    this.countries,
+    this.onCountryChanged,
+    this.onSaved,
+    this.showDropdownIcon = true,
+    this.dropdownDecoration = const BoxDecoration(),
+    this.inputFormatters,
+    this.enabled = true,
+    this.keyboardAppearance = Brightness.light,
+    this.searchText = 'Search by Country Name',
+    this.countryCodeTextColor,
+    this.dropDownArrowColor,
+    this.autofocus = false,
+    this.textInputAction,
+  });
 
   @override
   _IntlPhoneFieldState createState() => _IntlPhoneFieldState();
@@ -288,56 +288,63 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        _buildFlagsButton(),
-        SizedBox(width: 8),
-        Expanded(
-          child: TextFormField(
-            initialValue: widget.initialValue,
-            readOnly: widget.readOnly,
-            obscureText: widget.obscureText,
-            textAlign: widget.textAlign,
-            onTap: () {
-              if (widget.onTap != null) widget.onTap!();
-            },
-            controller: widget.controller,
-            focusNode: widget.focusNode,
-            onFieldSubmitted: (s) {
-              if (widget.onSubmitted != null) widget.onSubmitted!(s);
-            },
-            decoration: widget.decoration,
-            style: widget.style,
-            onSaved: (value) {
-              if (widget.onSaved != null)
-                widget.onSaved!(
-                  PhoneNumber(
-                    countryISOCode: _selectedCountry['code'],
-                    countryCode: '+${_selectedCountry['dial_code']}',
-                    number: value,
-                  ),
-                );
-            },
-            onChanged: (value) {
-              if (widget.onChanged != null)
-                widget.onChanged!(
-                  PhoneNumber(
-                    countryISOCode: _selectedCountry['code'],
-                    countryCode: '+${_selectedCountry['dial_code']}',
-                    number: value,
-                  ),
-                );
-            },
-            validator: validator,
-            keyboardType: widget.keyboardType,
-            inputFormatters: widget.inputFormatters,
-            enabled: widget.enabled,
-            keyboardAppearance: widget.keyboardAppearance,
-            autofocus: widget.autofocus,
-            textInputAction: widget.textInputAction,
+    return Container(
+      height: 70,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: _buildFlagsButton(),
           ),
-        ),
-      ],
+          SizedBox(width: 8),
+          Expanded(
+            child: TextFormField(
+              initialValue: widget.initialValue,
+              readOnly: widget.readOnly,
+              obscureText: widget.obscureText,
+              textAlign: widget.textAlign,
+              onTap: () {
+                if (widget.onTap != null) widget.onTap!();
+              },
+              controller: widget.controller,
+              focusNode: widget.focusNode,
+              onFieldSubmitted: (s) {
+                if (widget.onSubmitted != null) widget.onSubmitted!(s);
+              },
+              decoration: widget.decoration,
+              style: widget.style,
+              onSaved: (value) {
+                if (widget.onSaved != null)
+                  widget.onSaved!(
+                    PhoneNumber(
+                      countryISOCode: _selectedCountry['code'],
+                      countryCode: '+${_selectedCountry['dial_code']}',
+                      number: value,
+                    ),
+                  );
+              },
+              onChanged: (value) {
+                if (widget.onChanged != null)
+                  widget.onChanged!(
+                    PhoneNumber(
+                      countryISOCode: _selectedCountry['code'],
+                      countryCode: '+${_selectedCountry['dial_code']}',
+                      number: value,
+                    ),
+                  );
+              },
+              validator: validator,
+              keyboardType: widget.keyboardType,
+              inputFormatters: widget.inputFormatters,
+              enabled: widget.enabled,
+              keyboardAppearance: widget.keyboardAppearance,
+              autofocus: widget.autofocus,
+              textInputAction: widget.textInputAction,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

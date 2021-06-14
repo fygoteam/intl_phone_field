@@ -52,14 +52,15 @@ class _MyAppState extends State<MyApp> {
                   height: 10,
                 ),
                 IntlPhoneField(
-                  decoration: InputDecoration(
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(),
-                    ),
-                  ),
+                  // decoration: InputDecoration(
+                  //   labelText: 'Phone Number',
+                  //   border: OutlineInputBorder(
+                  //     borderSide: BorderSide(),
+                  //   ),
+                  // ),
                   onChanged: (phone) {
                     print(phone.completeNumber);
+                    _formKey.currentState?.validate();
                   },
                   onCountryChanged: (phone) {
                     print('Country code changed to: ' + phone.countryCode);
